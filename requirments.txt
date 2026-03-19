@@ -1,0 +1,9 @@
+better-profanity==0.7.0
+customtkinter==5.2.2
+darkdetect==0.8.0
+packaging==26.0
+PyAudio==0.2.14
+python-dotenv==1.2.2
+pyttsx3==2.99
+SpeechRecognition==3.15.1
+typing_extensions==4.15.0
