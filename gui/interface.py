@@ -3,6 +3,10 @@ import customtkinter
 #below when working on speak uncomment it
 #from voice import speak 
 
+#below connects the get_response function from brain to the gui so that the gui can get responses from the brain 
+from brain.ai import get_response
+
+
 #below creates the main app window
 app = customtkinter.CTk()
 
@@ -41,9 +45,8 @@ def send_button():
     if not user_input:
         return   
     
-    #-----WORK ON LATER---------------------------------
     #below is a function that will connect with brain to get the response, for now it just echoes the user input
-    #response = get_response(user_input)  # This is a placeholder function, replace with actual response generation
+    response = get_response(user_input)  # This is a placeholder function, replace with actual response generation
     #below updates the chatbox with the user input and the response from the brain, for now it just shows the user input and a placeholder response
     #update_chat(user_input, response)
     #Below will eventually be used to make angel speak out her response connects with the voice
@@ -52,14 +55,17 @@ def send_button():
 
     #below is a place holder function to show user input and response
     chatbox.insert("end", "You: " + user_input + "\n")
-    #below "I dont understnad yet" is a placeholder response, replace with response from the brain
-    chatbox.insert("end", "Angel: " + "I dont undertand yet" + "\n")
+    #below is where the response from the brain will be shown in the chatbox 
+    chatbox.insert("end", "Angel: " + response + "\n")
 
     #below is the autoscroll feature, it scrolls to the end of the chatbox after inserting new messages
     chatbox.see("end")
 
     #below clears the entry field after sending the message
     entry.delete(0, "end")
+
+    
+#-------BUTTON-CUSTOMIZATION---------------------------------------------    
 # command is just the function for the button to work
 button = customtkinter.CTkButton(app, text="Send Message", command=send_button)
 button.pack(pady=10)
