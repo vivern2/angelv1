@@ -18,7 +18,7 @@ def get_response(user_text):
         #below the response = client stuff creates request to AI
         response = client.chat.completions.create(
             #below will be the model we are using we can change later
-            model = "gpt-40-mini",
+            model = "gpt-4o-mini",
 
             #below messages is how we talk to the AI
             messages=[ 
