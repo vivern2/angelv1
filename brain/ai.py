@@ -34,6 +34,6 @@ def get_response(user_text):
 
     #below is error handlign
     except Exception as e:
-        #Below will print an error in the terminal
+        #Below will print an error message in the terminal
         print("ERROR:", e)
-        return "Sorry, something went wrong."
+        return f"Error: {e}"
