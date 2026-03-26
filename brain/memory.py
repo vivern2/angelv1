@@ -3,7 +3,7 @@ import json
 #below lets us use the os module to interact with the operating system and file system, such as reading and writing files
 import os
 #Below will be the location of the json memory file for Angel. 
-MEMORY_FILE = "memory.json"
+MEMORY_FILE = "brain/memory.json"
 
 
 #-------BELOW IS THE FUNCTION TO LOAD MEMORY FROM THE JSON FILE-------------------------------------------------------------
