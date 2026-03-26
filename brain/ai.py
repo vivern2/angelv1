@@ -4,6 +4,8 @@ from brain.personality import ANGEL_PERSONALITY
 #below imports ollama which houses the ai models we are using in this project. We will be using two models, Llama 3.1 and DeepSeek
 import ollama 
 
+#below imports the functions to save and retrieve memory from the json file
+from brain.memory import remember_name, get_name
 
 #below is a simple list that holds the conversation history between the user and the ai
 conversation_history = []
@@ -18,6 +20,20 @@ def get_response(user_text):
     try:
         #below will connect two models we are using and help us choose between them using the choose_model function 
         model = choose_model(user_text)
+
+        #--------------------------------------------------------------------------------------------------------------------------
+    #ALL STUFF BELOW IS ABOUT REMEMBERING THE USERS NAME AND INJECTING IT INTO THE AI'S PERSONALITY TO MAKE THE RESPONSES MORE PERSONALIZED AND HUMAN LIKE
+        #below will save the users name if already given from memory.py
+        remember_name(user_text)
+        #below will load memory and get the users name if it is already given, this will allow the ai to use the users name in its responses and make it more personalized
+        name = get_name() 
+
+        system_prompt =  ANGEL_PERSONALITY
+        #Below will inject the memory into Angels personality
+        if name: 
+            system_prompt += f"\nThe user's name is {name}. Use it when appropriate."
+
+        #--------------------------------------------------------------------------------------------------------------------------
 
         #below adds all of the users messages to the conversation history list
         conversation_history.append({"role": "user", "content": user_text})
