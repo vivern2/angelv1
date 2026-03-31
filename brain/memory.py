@@ -20,10 +20,6 @@ def load_memory():
     
 #-------BELOW IS THE FUNCTION TO SAVE MEMORY TO THE JSON FILE-------------------------------------------------------------
 def save_memory(data):
-
-
-    print("Saving memory to file:", data)  # 👈 DEBUG 
-
     #below opens the memory file in write mode
     with open(MEMORY_FILE, "w") as file:
         #below converts the python dictionary into json data and saves it to the file with indentation for readability
@@ -40,9 +36,6 @@ def  remember_name(user_text):
         name = user_text.lower().split("my name is")[-1].strip()
         #below captilizes the first letter of the name and makes the rest lowercase to ensure consistency in how the name is stored and used in responses
         name = name.capitalize()
-
-        print("Saving name: ", name) # for debugging purposes, this will print the name that is being saved to memory in the terminal
-
         #below saves to memory by adding the name to the memory dictionary under the key "name" and then calls the save_memory function to write the updated memory back to the json file
         memory["name"] = name
         #below saves to file

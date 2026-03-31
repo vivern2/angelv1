@@ -44,7 +44,7 @@ def get_response(user_text):
                 model = model,
                 messages=[
                     #Below defines Angel as a helpful and friendly assistant, a calm and intelligent AI assistant. This will help the ai to give better responses to the user
-                    {"role": "system","content": ANGEL_PERSONALITY},
+                    {"role": "system","content": system_prompt},
                     #below sends the full history to the ai
                 ] + conversation_history
             )
