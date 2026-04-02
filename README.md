@@ -1,3 +1,11 @@
+# AI Voice Assistant
+
+## Overview
+This project is a Python-based AI voice assistant designed to interact with users through speech recognition and text-to-speech. It can process voice commands and perform system-level tasks, providing a foundation for intelligent automation and user interaction.
+
+## Features
+- Real-time voice input using speech recognition
+- Text-to-speech responses for interactive communication
 - System-level command execution (launching apps, handling tasks)
 - Modular architecture for scalability and future enhancements
 
