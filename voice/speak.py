@@ -28,7 +28,7 @@ def speak(text):
         "-v", "en-us+f3", 
         #Below will give it a natural speed (lower = slower, more natural) 
         "-s", "165",     
-        # Below will give it a more feminine pitch (higher = more feminine)   
+        # Below will give it a more feminine pitch   (higher = more feminine)   
         "-p", "50",       
         text
     ])
