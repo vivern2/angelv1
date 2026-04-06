@@ -19,6 +19,9 @@ VOICE_MODE = True
 def speak(text):
      if not VOICE_MODE:
         return
+     
+     #below will prevent awkward pauses between sentences  
+        text = text.replace("\n", " ")
 
     # below is the command that will be run in the terminal to convert text to speech using espeak-ng, this is a more natural sounding voice than the default espeak voice
     # also has customizations for speed, pitch, and voice type to make it sound more human like
@@ -29,8 +32,7 @@ def speak(text):
         #Below will give it a natural speed (lower = slower, more natural) 
         "-s", "165",     
         # Below will give it a more feminine pitch   (higher = more feminine)   
-        "-p", "50",       
-        text
+        "-p", "50",      
     ])
 
 

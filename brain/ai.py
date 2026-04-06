@@ -10,6 +10,9 @@ from brain.memory import remember_name, get_name
 #below is a simple list that holds the conversation history between the user and the ai
 conversation_history = []
 
+#below will import the speak function from speak.py so that angel will speak her responses
+from voice.speak import speak
+
 
 
 
@@ -53,6 +56,10 @@ def get_response(user_text):
         #below stores Angels response in the conversation history list so that it can be used in future responses and to give the ai more context about the conversation
         conversation_history.append({"role": "assistant", "content": reply})
 
+        #below will make angel speak her response using the speak function from speak.py
+        speak(reply)
+
+        
         return reply
 
     #below is error handlign
