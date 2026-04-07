@@ -9,11 +9,31 @@ import pyttsx3
 #Below allows us to run terminal commands safely 
 import subprocess
 
+#Below imports threading so we can add threads so voice can have its own thread from the gui
+import threading 
+
+
+
 #this function initializes the pyttsx3 engine and sets the voice properties
 engine = pyttsx3.init(driverName='espeak')
 
-# below is the switch for wheather we want ot turn on the speak mode
+
+#------------------------
+# below is the switch for wheather we want ot turn on the speak mode or off
 VOICE_MODE = True
+
+
+def set_voice_enabled(value: bool):
+    global VOICE_MODE
+    VOICE_MODE = value
+
+#check on this ---------
+
+
+
+
+
+
 
 #Below is the speak function that takes in text as an argument and uses the pyttsx3 engine to convert it to speech
 def speak(text):
