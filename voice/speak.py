@@ -3,7 +3,6 @@
 
 
 #Below allows us to run terminal commands safely 
-from concurrent.futures import thread
 import subprocess
 #Below imports threading so we can add threads so voice can have its own thread from the gui
 import threading 
@@ -37,7 +36,7 @@ def speak(text):
         subprocess.run([
             "espeak-ng",
             #below we will give a british female accent
-            "-v", "en-gb+f3" 
+            "-v", "en-us+f3" 
             #Below will give it a natural speed (lower = slower, more natural) 
             "-s", "150",     
             # Below will give it a more feminine pitch   (higher = more feminine)   
