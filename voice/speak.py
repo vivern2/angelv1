@@ -37,7 +37,7 @@ def speak(text):
         subprocess.run([
             "espeak-ng",
             #below we will give a british female accent
-            "-v", "en-gb-f3" 
+            "-v", "en-gb+f3" 
             #Below will give it a natural speed (lower = slower, more natural) 
             "-s", "150",     
             # Below will give it a more feminine pitch   (higher = more feminine)   
@@ -48,7 +48,7 @@ def speak(text):
               
         ])
         speaking = False
-        
+
         # Run in background thread
      thread = threading.Thread(target=run_speech)
      thread.start()
