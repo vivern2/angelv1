@@ -21,10 +21,11 @@ def speak(text):
         return
      
      #below will prevent awkward pauses between sentences  
-        text = text.replace("\n", " ")
+     text = text.replace("\n", " ")
 
     # below is the command that will be run in the terminal to convert text to speech using espeak-ng, this is a more natural sounding voice than the default espeak voice
     # also has customizations for speed, pitch, and voice type to make it sound more human like
+    
      subprocess.run([
         "espeak-ng",
         #Below will give it a female voice
@@ -34,5 +35,10 @@ def speak(text):
         # Below will give it a more feminine pitch   (higher = more feminine)   
         "-p", "50",      
     ])
+     
+
+#Below is making a new thread so that the speak function can run in the background and not block the main thread, this will allow angel to speak while still being able to process user input and give responses without any lag or delay
+
+
 
 
