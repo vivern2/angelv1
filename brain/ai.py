@@ -10,11 +10,23 @@ from brain.memory import remember_name, get_name
 #below is a simple list that holds the conversation history between the user and the ai
 conversation_history = []
 
-#below will import the speak function from speak.py so that angel will speak her responses
-from voice.speak import speak
+#below will import the speak function from speak.py so that angel will speak her responses and also imports others
+from voice.speak import set_voice_enabled, speak
 
 
+#-----BELOW WILL ALLOW US TO TURN ON OR OFF THE VOICE OF THE AI---------------------------------------------------------------------------
+def handle_voice_commands(user_text):
+    text = user_text.lower()
 
+    if any(p in text for p in ["turn off voice", "stop talking", "be quiet"]):
+        set_voice_enabled(False)
+        return "Voice disabled."
+
+    elif any(p in text for p in ["turn on voice", "start talking"]):
+        set_voice_enabled(True)
+        return "Voice enabled."
+
+    return None
 
 
 #-------BELOW IS THE GET RESPONSE FUNCTION-------------------------------------------------------------
@@ -58,8 +70,6 @@ def get_response(user_text):
 
         #below will make angel speak her response using the speak function from speak.py
         speak(reply)
-
-        
         return reply
 
     #below is error handlign
