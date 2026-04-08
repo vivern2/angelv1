@@ -3,6 +3,7 @@
 
 
 #Below allows us to run terminal commands safely 
+from concurrent.futures import thread
 import subprocess
 #Below imports threading so we can add threads so voice can have its own thread from the gui
 import threading 
