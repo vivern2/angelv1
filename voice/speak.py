@@ -34,10 +34,13 @@ def speak(text):
     # below is the command that will be run in the terminal to convert text to speech using espeak-ng, this is a more natural sounding voice than the default espeak voice
     # also has customizations for speed, pitch, and voice type to make it sound more human like
      def run_speech():
+
+        global speaking
+
         subprocess.run([
             "espeak-ng",
             #below we will give a british female accent
-            "-v", "en-us+f3" 
+            "-v", "en-us+f3", 
             #Below will give it a natural speed (lower = slower, more natural) 
             "-s", "150",     
             # Below will give it a more feminine pitch   (higher = more feminine)   
@@ -49,7 +52,8 @@ def speak(text):
         ])
         speaking = False
 
-        # Run in background thread
-     thread = threading.Thread(target=run_speech)
+    # Run in background thread
+    #Below I am using a deamon thread which means that when the main program finishes the deamon gets killed instantly
+     thread = threading.Thread(target=run_speech, daemon=True)
      thread.start()
      
