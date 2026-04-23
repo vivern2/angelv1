@@ -53,17 +53,24 @@ def get_response(user_text):
         #below adds all of the users messages to the conversation history list
         conversation_history.append({"role": "user", "content": user_text})
 
+        MAX_HISTORY = 6  # This will limit the conversation history to the last 10 messages to prevent it from getting too long and overwhelming the ai, you can adjust this number as needed
+
 
        #below is the acutal ai response that will be given to the user
-        response = ollama.chat(
+        stream = ollama.chat(
                 model = model,
-                messages=[
+                messages=(
                     #Below defines Angel as a helpful and friendly assistant, a calm and intelligent AI assistant. This will help the ai to give better responses to the user
-                    {"role": "system","content": system_prompt},
+                    [{"role": "system","content": system_prompt}] +
                     #below sends the full history to the ai
-                ] + conversation_history
+                  conversation_history[-MAX_HISTORY:]
+                ),
+                # below will stream the response from the ai so that it can be spoken in real time without having to wait for the full response to be generated, this will make the ai feel more responsive and natural when speaking
+                stream = True
             )
-        reply = response ["message"]["content"]
+        for chunk in stream:
+            token = chunk["message"]["content"]
+            yield token  # This will yield the response token by token, allowing for real-time streaming of the response
 
         #below stores Angels response in the conversation history list so that it can be used in future responses and to give the ai more context about the conversation
         conversation_history.append({"role": "assistant", "content": reply})
@@ -71,6 +78,8 @@ def get_response(user_text):
         #below will make angel speak her response using the speak function from speak.py
         speak(reply)
         return reply
+
+
 
     #below is error handlign
     except Exception as e:
@@ -88,7 +97,7 @@ def choose_model(user_text):
     text = user_text.lower()
 
     #if it is a Reasoning or Coding question it will use DeepSeek
-    if any(word in text for word in ["code", "solve", "math", "algorithm", "why", "how", "reasoning", "debug"]):
+    if any(word in text for word in ["code", "debug", "program", "algorithm"]):
         return "deepseek-r1:8b"
     
     #defualt model is Llama 3.1
